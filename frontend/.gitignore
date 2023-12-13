@@ -30,6 +30,7 @@ web_modules/
 *.local
 *.log
 temp
+dist
 
 .eslintcache
 
