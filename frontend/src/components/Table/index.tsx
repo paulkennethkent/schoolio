@@ -29,8 +29,12 @@ export const Table = ({
                 <td>{row.id}</td>
                 <td>{row.name}</td>
                 <td>
+                  <Link to={`/edit/${row.id}`}>
+                    <button className="btn btn-sm btn-primary">Edit</button>
+                  </Link>
+
                   <Link to={`/${row.id}`}>
-                    <button className="btn btn-sm btn-neutral">Edit</button>
+                    <button className="btn btn-sm btn-secondary">View</button>
                   </Link>
 
                   <button

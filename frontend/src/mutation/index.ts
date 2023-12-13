@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { School } from "../types";
 
+// A mutation hook to 'Create' a single school
 export const useCreateSchool = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -15,6 +16,7 @@ export const useCreateSchool = () => {
   });
 };
 
+// A mutation hook to 'Delete' a single school
 export const useDeleteSchool = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -28,6 +30,7 @@ export const useDeleteSchool = () => {
   });
 };
 
+// A mutation hook to 'Update' a single school
 export const useUpdateSchool = () => {
   const queryClient = useQueryClient();
   return useMutation({

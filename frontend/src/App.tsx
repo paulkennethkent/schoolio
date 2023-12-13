@@ -14,7 +14,32 @@ import {
 } from "react-router-dom";
 import { BasicLayout } from "./layout";
 import { Form } from "./components/Form";
+import { Display } from "./components/Display";
 
+// View page (Read)
+function View() {
+  let { id } = useParams();
+
+  const { data, isLoading } = useSchool({ id });
+
+  if (isLoading)
+    return <span className="loading loading-infinity loading-xs"></span>;
+
+  return (
+    <BasicLayout>
+      <h1 className="text-lg font-bold">View</h1>
+      <Display
+        id={data?.data?.school?.id ?? ""}
+        name={data?.data?.school?.name ?? ""}
+      />
+      <Link to={`/`}>
+        <button className="btn btn-sm btn-neutral">Back</button>
+      </Link>
+    </BasicLayout>
+  );
+}
+
+// Edit page (Update)
 function Edit() {
   let { id } = useParams();
 
@@ -27,10 +52,11 @@ function Edit() {
 
   return (
     <BasicLayout>
-      <div className="stat">
-        <div className="stat-title">id: {data?.data?.school?.id}</div>
-        <div className="stat-value">name: {data?.data?.school?.name}</div>
-      </div>
+      <h1 className="text-lg font-bold">Edit</h1>
+      <Display
+        id={data?.data?.school?.id ?? ""}
+        name={data?.data?.school?.name ?? ""}
+      />
       <Form
         mutateFn={(data) => updateSchool.mutate(data)}
         action={`Update`}
@@ -43,6 +69,7 @@ function Edit() {
   );
 }
 
+// Home page (List)
 function Schools() {
   const { data } = useSchools();
   const createSchool = useCreateSchool();
@@ -69,7 +96,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Schools />} />
-        <Route path="/:id" element={<Edit />} />
+        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/:id" element={<View />} />
       </Routes>
     </BrowserRouter>
   );
