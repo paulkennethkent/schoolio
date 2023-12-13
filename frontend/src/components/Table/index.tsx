@@ -8,8 +8,6 @@ export const Table = ({
   data: School[] | undefined;
   deleteFn: (id: string) => void;
 }) => {
-  console.log(data);
-
   if (!data || data.length === 0) {
     return <div>No school data</div>;
   }
