@@ -1,24 +1,24 @@
 use crate::model::School;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct GenericResponse {
     pub status: String,
     pub message: String,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct SchoolData {
     pub school: School,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct SingleSchoolResponse {
     pub status: String,
     pub data: SchoolData,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct SchoolListResponse {
     pub status: String,
     pub results: usize,

@@ -10,3 +10,6 @@ serde_json = "1.0.95"
 tokio = { version = "1.26.0", features = ["full"] }
 tower-http = { version = "0.4.0", features = ["cors"] }
 uuid = { version = "1.3.0", features = ["v4","serde"] }
+
+[dev-dependencies]
+axum-test-helper = "0.*" # alternatively specify the version as "0.3.0"
