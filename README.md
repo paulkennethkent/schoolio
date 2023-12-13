@@ -31,7 +31,7 @@ cargo run
 
 This will start the server on port `8000`.
 
-Note: A cors policy has been added to allow a frontend to make request from port `5173`.
+Note: A cors policy has been added to allow a frontend to make requests from port `5173`.
 
 ### Frontend
 
