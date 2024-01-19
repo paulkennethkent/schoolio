@@ -11,7 +11,13 @@ use crate::{
     response::{SchoolData, SchoolListResponse, SingleSchoolResponse},
 };
 
+use crate::FORCED_LATENCY_MS;
+
+use std::time::Duration;
+use tokio::time::sleep;
+
 pub async fn school_list_handler(State(db): State<DB>) -> impl IntoResponse {
+
     let schools = db.lock().await;
 
     let schools: Vec<School> = schools.clone().into_iter().collect();
@@ -29,6 +35,8 @@ pub async fn create_school_handler(
     State(db): State<DB>,
     Json(mut body): Json<School>,
 ) -> Result<impl IntoResponse, (StatusCode, Json<serde_json::Value>)> {
+    sleep(Duration::from_millis(FORCED_LATENCY_MS)).await;
+
     let mut vec = db.lock().await;
 
     let uuid_id = Uuid::new_v4();
@@ -51,6 +59,9 @@ pub async fn get_school_handler(
     Path(id): Path<Uuid>,
     State(db): State<DB>,
 ) -> Result<impl IntoResponse, (StatusCode, Json<serde_json::Value>)> {
+    sleep(Duration::from_millis(FORCED_LATENCY_MS)).await;
+
+
     let id = id.to_string();
     let vec = db.lock().await;
 
@@ -68,6 +79,7 @@ pub async fn get_school_handler(
         "status": "fail",
         "message": format!("School with ID: {} not found", id)
     });
+
     Err((StatusCode::NOT_FOUND, Json(error_response)))
 }
 
@@ -76,6 +88,8 @@ pub async fn edit_school_handler(
     State(db): State<DB>,
     Json(body): Json<UpdateSchoolSchema>,
 ) -> Result<impl IntoResponse, (StatusCode, Json<serde_json::Value>)> {
+
+
     let id = id.to_string();
     let mut vec = db.lock().await;
 
@@ -115,6 +129,9 @@ pub async fn delete_school_handler(
     Path(id): Path<Uuid>,
     State(db): State<DB>,
 ) -> Result<impl IntoResponse, (StatusCode, Json<serde_json::Value>)> {
+
+
+
     let id = id.to_string();
     let mut vec = db.lock().await;
 

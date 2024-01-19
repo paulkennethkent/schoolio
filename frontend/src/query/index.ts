@@ -12,9 +12,10 @@ export const useSchools = () => {
 };
 
 // A query hook to 'Read' a single school
-export const useSchool = ({ id }: { id: string | undefined }) => {
+export const useSchool = ({ id }: { id: string | null }) => {
   return useQuery<SchoolResponse>({
-    queryKey: ["schools"],
+    queryKey: ["schools", id],
+    enabled: id !== null,
     queryFn: () => {
       return axios
         .get(`http://localhost:8000/api/school/${id}`)

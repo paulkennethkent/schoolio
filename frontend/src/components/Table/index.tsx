@@ -25,18 +25,10 @@ export const Table = ({
         <tbody>
           {data.map((row, key) => {
             return (
-              <tr key={`row-${key}`}>
+              <tr key={`row-${row.id}`}>
                 <td>{row.id}</td>
                 <td>{row.name}</td>
                 <td>
-                  <Link to={`/edit/${row.id}`}>
-                    <button className="btn btn-sm btn-primary">Edit</button>
-                  </Link>
-
-                  <Link to={`/${row.id}`}>
-                    <button className="btn btn-sm btn-secondary">View</button>
-                  </Link>
-
                   <button
                     onClick={() => deleteFn(row.id)}
                     className="btn btn-sm btn-error"
