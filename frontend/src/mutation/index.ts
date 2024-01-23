@@ -57,6 +57,8 @@ export const useDeleteSchool = () => {
       await queryClient.invalidateQueries({ queryKey: ["schools"] });
     },
   });
+
+  //  more lifecycles
 };
 
 // A mutation hook to 'Update' a single school
@@ -72,5 +74,7 @@ export const useUpdateSchool = () => {
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ["schools"] });
     },
+
+    //  more lifecycles
   });
 };
